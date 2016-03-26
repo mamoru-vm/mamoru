@@ -1,0 +1,3 @@
+[submodule "app/packages/meteor-josh-js"]
+	path = app/packages/meteor-josh-js
+	url = https://github.com/harmon25/meteor-josh-js
