@@ -1,0 +1,28 @@
+<template name="filterButtons">
+
+  <div class="ui small icon buttons">
+
+    <button class="ui button filterButton {{checkActive 'exploit'}}" data-filter="exploit" data-content="Exploits" data-variation="tiny"><i class="crosshairs icon"></i></button>
+    <button class="ui button filterButton {{checkActive 'auxiliary'}}" data-filter="auxiliary" data-content="Auxiliary" data-variation="tiny"><i class="unhide icon"></i></button>
+    <button class="ui button filterButton {{checkActive 'post'}}" data-filter="post" data-content="Post" data-variation="tiny"><i class="terminal icon"></i></button>
+    <button class="ui button filterButton {{checkActive 'nop'}}" data-filter="nop" data-content="Nops" data-variation="tiny"><i class="level down icon"></i></button>
+    <button class="ui button filterButton {{checkActive 'payload'}}" data-filter="payload" data-content="Payloads" data-variation="tiny"><i class="rocket icon"></i></button>
+    <button class="ui button filterButton {{checkActive 'encoder'}}" data-filter="encoder" data-content="Encoders" data-variation="tiny"><i class="code icon"></i></button>
+ 
+    <button class="ui button filterButton" data-filter="all" data-content="All" data-variation="tiny"><i class="asterisk icon "></i></button>
+    <button class="ui button filterButton {{checkActive 'faves'}}" data-filter="faves" data-content="Favourites" data-variation="tiny"><i class="heart icon"></i></button>
+    <button class="ui button filterButton" data-filter="clear" data-content="Clear Filter" data-variation="tiny"><i class="erase icon "></i></button>
+</div> 
+</template>
+
+<template name="moduleSearchFilter">
+  <div class="ui icon action input">
+    <input id="modSearchField" type="text" placeholder="Search..." elsourceindex="189">
+    <button class="ui small icon button searchMods" elsourceindex="190">
+      <i class="search icon"></i>
+    </button>
+    <button class="ui small icon button clearField" elsourceindex="191">
+      <i class="erase icon"></i>
+    </button>
+  </div>
+</template>

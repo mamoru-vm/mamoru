@@ -1,0 +1,36 @@
+<template name="moduleList">
+<div class="ui grid container" >
+<div class="sixteen wide column">
+  <h1 class="ui dividing header"> Browse Modules </h1> 
+   <div class="row">
+  {{#if Template.subscriptionsReady}}
+    <!--{{> moduleSearchFilter}}-->
+    {{> filterButtons }}
+    {{> reactiveTable settings=tableSettings }}
+  {{else}}
+    <h4 class="ui dividing center aligned header">
+     <div class="ui active inline loader"></div> Loading Modules... 
+    </h4>
+  {{/if}} 
+  </div>
+</div>
+</div>
+</template>
+
+
+<!--
+<template name="modsLoadingTemplate">
+<h2> Modules loading...</h2>
+</template>
+
+<template name="moduleRow">
+  <tr>
+      <td class="center aligned">{{this.cat}}</td>
+      <td>{{this.name}}</td>
+      <td class="center aligned">{{this.platform}}</td>
+      <td class="center aligned"><div class="ui star rating rank" data-rating="{{this.rank}}" data-max-rating="6"></div></td>
+      <td class="center aligned"><div class="ui heart rating fave" data-rating="{{checkFave this.modId}}" data-max-rating="1" data-mod-id="{{this.modId}}"></div></td>
+  </tr>
+</template>
+-->
+

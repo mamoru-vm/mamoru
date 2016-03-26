@@ -1,0 +1,29 @@
+<template name="comment">
+  <div class="comment">
+      <div class="content">
+        <a class="author" spfieldtype="null" elsourceindex="155">{{this.author}}</a>
+        <div class="metadata">
+          <span class="date">{{this.posted}}</span>
+        </div>
+        <div class="text">
+          <p>{{this.comment}}</p>
+        </div>
+        <div class="actions">
+          <a class="reply" spfieldtype="null" elsourceindex="156">Reply</a>
+        {{#if myComment}}        
+          <a class="edit" spfieldtype="null" elsourceindex="157">Edit</a>
+        {{/if }}
+        </div>
+      </div>
+      {{#if localReactiveVar}}
+      <form class="ui reply form" elsourceindex="189">
+        <div class="field">
+          <textarea elsourceindex="190"></textarea>
+        </div>
+        <div class="ui primary submit labeled icon button">
+          <i class="icon edit"></i> Add Reply
+        </div>
+      </form>
+      {{/if }}
+  </div>
+</template>

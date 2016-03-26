@@ -1,0 +1,40 @@
+<template name="newUserModal">
+	<div id="newUserModal" class="ui modal">
+	  	<div class="header">
+			Add User
+		</div>
+		<div class="content">
+			<form id="newUserForm" class="ui form">
+	    <div class="required field">
+	      <label>Username</label>
+	      <input id="username" name="username" type="text" placeholder="jsmith">
+		</div>
+		<div class="required field">
+	      <label>Email</label>
+	      <input id="email" name="email" type="text" placeholder="jsmith@adomain.com">
+		</div>
+			<div class="required field">
+	      <label>Temporary Password</label>
+	      <input id='temppass' name="temppass" type="password">
+		</div>
+			<div class="required field">
+	      <label>Repeat Password</label>
+	      <input id='checkpass' name="checkpass" type="password" >
+		</div>
+			<div class="field">
+	      <div class="ui toggle checkbox">
+      	<input name="isadmin" type="checkbox" tabindex="0" class="hidden">
+      <label>Administrator</label>
+    </div>
+		</div>
+		<div class="ui error message"></div>
+		</form>
+	</div>
+	<div class="actions">
+	    <!--<div class="ui approve button">Save</div> -->
+	     <div id="saveUser" class="ui button">Save</div>
+	    <div class="ui cancel button">Cancel</div>
+	</div>
+
+	</div>
+</template>

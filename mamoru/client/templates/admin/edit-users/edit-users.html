@@ -1,0 +1,65 @@
+<template name="editUsers">
+ <div class="one column row">
+ <div class="fourteen wide column">
+<h1>Users</h1>
+<table class="ui selectable celled compact inverted table">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th class="center aligned">Projects</th>
+      <th class="center aligned">Admin</th>
+      <th class="center aligned collapsing">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+   {{#each allUsers}}
+     {{#if notWorker this}}
+      {{> userTableRow id=this._id userName=this.username email=this.emails projects=this.projects roles=this.roles}}
+     {{/if}}
+   {{/each}}
+
+  </tbody>
+  <tfoot>
+    <tr>
+    <th colspan="5">
+        <div id="addUser" class="ui right floated small inverted basic labeled icon button green">
+          <i class="user icon"></i> Add User
+        </div>
+    </th>
+  </tr></tfoot>
+</table>
+</div>
+</div>
+</template>
+
+<template name='projectsCell'>
+    <div>
+      {{#if isUserAdmin userId }}
+          <i class="large asterisk icon"></i>
+      {{else}}
+        {{#each projects}}
+          {{getProjectName(this)}}<br>
+        {{/each}}
+      {{/if }}
+    </div>
+</template>
+
+<template name='userTableRow'>
+  <tr>
+    <td class="usernameRow">{{userName}}</td>
+    <td>{{getEmail email }}</td>
+    <td class="center aligned">{{> projectsCell userId=id projects=projects}}</td>
+    <td class="center aligned">
+     {{#if isUserAdmin id }}
+         <i class="green large check circle outline icon"></i>
+    {{else}}
+        <i class="red large remove circle outline icon"></i>
+    {{/if }}
+    </td>
+    <td class="center aligned collapsing" ><button data-value='{{this.id}}' class="ui inverted icon compact basic button red removeUser {{isMe(this.id)}}"><i class="remove user icon"></i></button> </td>
+  </tr>
+</template>
+
+
+    <!--<td class="left aligned"><button data-value='{{this.id}}' class="ui inverted icon compact basic button editUserRoles"><i class="grey settings icon"></i></button></td> -->

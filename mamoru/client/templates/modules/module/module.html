@@ -1,0 +1,148 @@
+
+<template name="aModule">
+<div class="ui grid container" >
+<!--<div class="three wide left floated column">
+  {{> moduleActions}}
+</div> -->
+ {{> exploitPayloadModal}}
+<div class="mobile only row">
+{{> moduleActions orientation="horizontal" fixed="bottom fixed"}}
+</div>
+<div class="thirteen wide column">
+  <div class="ui left attached rail">
+    {{> moduleActions orientation="vertical" fixed=""}}
+  </div>
+  {{#with thisModule}}
+  <h1 class="ui header">{{name}} <div class="ui huge heart rating" data-rating="{{checkFave _id}}" data-modId="{{_id}}"></div> </h1>   
+  <div class="row">
+  <div class="ui list">
+   <div class="item">
+      <div class="header">Category</div>
+     {{cat}}
+    </div>
+     <div class="item">
+      <div class="header">Platform</div>
+     {{platform}}
+    </div>
+     {{#if targets}}
+      <div class="item">
+      <div class="header">Targets</div>
+      <div class="ui horizontal  bulleted list">
+        {{#each makeArray targets}}
+             <div class="item"> {{this}}</div>
+        {{/each }}
+     </div>
+    </div>
+    {{/if }}
+    {{#with payloads}}
+      <div class="item">
+      <div class="header">Compatible Payloads</div>
+      <div class="ui horizontal bulleted list">
+        {{#each truncPayloads payloads}}
+             <div class="item"> {{this.path}}</div>
+        {{/each }}
+     </div>
+    </div>
+    {{/with }}
+    <div class="item">
+      <div class="header">Authors</div>
+      <div class="ui horizontal bulleted list">
+        {{#each authors}}
+             <div class="item"> {{this}}</div>
+        {{/each }}
+     </div>
+    </div>
+    <div class="item">
+      <div class="header">Description</div>
+       {{description}}
+    </div>
+
+    </div>
+
+  </div>
+  {{/with }}
+</div>
+<div class="thirteen wide column" style="padding-bottom:100px;">
+<h3 class="ui dividing header">Module Options</h3> 
+{{#if Template.subscriptionsReady}}  {{else}} <h4 class="ui center aligned header">Loading Options</h4><div class="ui active centered large inline loader"></div> {{/if}}
+<div id="modOptionsForm" class="ui equal width form">
+<div class="ui segments">
+{{#if textOpts}}
+<div class="ui segment">
+ {{#each textOpts}}
+  <div class="fields">
+   {{#each this}}
+    <div class="field {{#if required }}requiredField{{else}}notRequiredField{{/if}}">
+      <label>{{originalName name}} <i data-content="{{desc}}" class="help circle icon pop"></i></label>
+      <input name="{{name}}" type="text" >
+    </div>
+  {{/each }}
+  </div>
+ {{/each }}
+</div>
+{{/if }}
+{{#if intOpts}}
+<div class="ui segment">
+ {{#each intOpts}}
+  <div class="fields">
+   {{#each this}}
+    <div class="field {{#if required }}requiredField{{else}}notRequiredField{{/if}}">
+      <label>{{originalName name}} <i data-content="{{desc}}" class="help circle icon pop"></i></label>
+      <input name="{{name}}" type="text" >
+    </div>
+  {{/each }}
+  </div>
+ {{/each }}
+</div>
+{{/if }}
+{{#if boolOpts}}
+<div class="ui segment">
+ {{#each boolOpts}}
+ <div class="fields inline">
+  {{#each this}}
+  <div class="field {{#if required }}requiredField{{else}}notRequiredField{{/if}}">
+    <div data-content="{{name}}" class="ui toggle checkbox pop">
+      <input name="{{name}}" type="checkbox" class="hidden">
+      <label>{{originalName name}} <i data-content="{{desc}}" class="help circle icon pop"></i></label>
+    </div>
+  </div>
+  {{/each}}
+  </div>
+ {{/each}}
+ </div>
+{{/if}}
+{{#if enumOpts}}
+<div class="ui segment">
+ {{#each enumOpts}}
+<div class="fields">
+  {{#each this}}
+  <div class="field {{#if required }}requiredField{{else}}notRequiredField{{/if}}">
+  <label class="label pop">{{originalName name}}<i data-content="{{desc}}" class="help circle icon pop"></i></label>
+    <select name="{{name}}" class="ui dropdown dropdownOpt">
+      <option value="">Select One</option>
+      {{#each enums}}
+        <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
+  </div>
+  {{/each }}
+  </div>
+ {{/each }}
+</div>
+{{/if }}
+</div> <!-- end form segments -->
+
+</div> <!-- end form -->
+</div>
+
+<!--
+<div class="sixteen wide column">
+<div class="row">
+  <h4 class="ui dividing center aligned header">
+   <div class="ui active inline loader"></div> Loading Module Details... 
+  </h4>
+</div>
+</div>
+-->
+</div>
+</template>

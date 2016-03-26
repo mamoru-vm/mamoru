@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "child-process-promise": {
+      "version": "1.1.0",
+      "dependencies": {
+        "q": {
+          "version": "1.4.1"
+        }
+      }
+    },
+    "node-7z": {
+      "version": "0.3.0",
+      "dependencies": {
+        "when": {
+          "version": "3.7.3"
+        },
+        "win-spawn": {
+          "version": "2.0.0"
+        }
+      }
+    }
+  }
+}

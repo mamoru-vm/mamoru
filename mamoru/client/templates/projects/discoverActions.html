@@ -1,0 +1,44 @@
+<template name='discoverActions'>
+ <div class="ui {{orientation}} {{fixed}} menu actionSideBarProject">
+  <input class="fileInput" style="display:none;" type="file" multiple />
+  <a class="item addHost"><i class="plus icon"></i>Add Host</a>
+     <div class="item header">Discover Hosts</div>
+    <div class="ui dropdown item"> <i class="dropdown icon"></i><span class="text"><i class="play icon"></i>Run Scan</span>
+      <div class="menu">
+      {{#each scanMods}}
+        <div data-value="{{this._id}}" class="item scanMod">{{this.name}}</div>
+      {{/each }}
+      </div>
+    </div>
+
+    <a class="item selectFiles"> <i class="file text icon"></i> Upload Scan</a>
+    <a class="item enumerateHost"><i class="unhide icon"></i> Nmap</a>
+
+  
+  <div class="ui horizontal list item">
+  {{#each Files}}
+    <div class="item"><a data-content="{{name}}" class="ui label" data-value="{{@index}}">{{name}}<i class="delete icon fileRemove"></i></a></div>
+  {{/each}}
+  </div>
+  {{#if Files}}
+    <a class="item uploadFiles"> <i class="upload icon"></i>Upload Scan(s)</a>
+  {{/if }}
+  </div>
+</template>
+
+<template name="discoverHostActions">
+  <div class="right menu">
+    <div id="selectedHostHeader" class="header item">{{this.address}}</div>
+    <div id="hostDropdown" class="ui dropdown item">
+      <i class="sidebar icon"></i>
+      Host Actions
+      <i class="vertically flipped dropdown icon"></i>
+      <div class="menu">
+        <a class="item" id="enumerateHost"><i class="sitemap icon"></i>Enumerate Host</a> 
+        <a class="item" id="addHostNote"><i class="file text icon"></i>Add Note</a> 
+        <a class="item" id="addHostServce"><i class="file code outline icon"></i>Add Service</a> 
+        <a class="item" id="deleteHost"><i class="trash outline icon"></i>Delete Host</a> 
+      </div>
+    </div>
+  </div>
+</template>

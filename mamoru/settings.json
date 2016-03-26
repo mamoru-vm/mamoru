@@ -1,0 +1,19 @@
+{	
+  "adminName": "admin",
+  "adminEmail": "admin@msfweb.com",
+  "adminPass": "adminPass",
+
+  "postgresDB": "mamoru",
+  "pgRootPass": "postgresRoot!",
+
+  "docker0IP": "172.17.0.1",
+
+  "MsfRPCDUser":"mamoru",
+  "MsfRPCDPass":"msfRPCDPass!",
+  
+  "validateEmails": false,
+
+  "workerPass": "aStrongPass",
+  "consolePoolSize":3
+
+}

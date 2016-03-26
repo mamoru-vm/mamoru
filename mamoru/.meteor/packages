@@ -1,0 +1,72 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+# -- Meteor Core Packages
+meteor-base
+mongo
+standard-minifiers
+mobile-experience
+blaze-html-templates
+session
+jquery
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check
+reactive-var
+accounts-password
+ecmascript
+
+# -- Dev 
+meteortoys:allthings
+#testing now done with chimp
+
+# -- UI/Frontend Packages
+semantic:ui
+flemay:less-autoprefixer
+juliancwirko:s-alert
+juliancwirko:s-alert-stackslide
+fortawesome:fontawesome
+harmon:meteor-josh-js
+mizzao:jquery-ui
+flowkey:hotkeys
+aslagle:reactive-table
+
+# -- User Account Related
+useraccounts:semantic-ui
+alanning:roles
+useraccounts:flow-routing
+
+# -- Misc Third Party Functionality Packages
+ongoworks:security
+vsivsi:job-collection
+matb33:collection-hooks
+meteorhacks:aggregate
+kadira:flow-router
+underscorestring:underscore.string
+kadira:blaze-layout
+zimme:active-route
+meteorhacks:fast-render
+momentjs:moment
+u2622:persistent-session
+babrahams:editable-text
+aldeed:template-extension
+juliancwirko:s-alert-slide
+juliancwirko:s-alert-flip
+
+# -- Internal Packages
+mamoru:core
+mamoru:msf-api
+mamoru:fixtures
+mamoru:mongo-import
+mamoru:manager
+
+# move more metasploit into this plugin somehow...
+# -- Main Plugin
+mamoru:main-plugin

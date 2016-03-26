@@ -1,0 +1,92 @@
+
+<template name="modPlatform">
+<a href="/modules/filtered?category={{../../cat}}&platform={{plat}}" data-value="{{../../cat}}-{{plat}}" class="item">{{titleize(plat)}}</a>
+</template>
+
+<template name="modCategory">
+      <div class="item">
+                  <!-- icon -->
+       <i class="{{this.icon}} icon"></i>
+        <i class="dropdown icon"></i>
+        <span class="text">{{ titleize cat }}</span>
+        <div class="menu">
+          {{#each this.platforms }}
+            {{>  modPlatform plat=this }}
+          {{/each }}
+          <a href="/modules/filtered?category={{cat}}" data-value="{{cat}}-all" class="item">All</a>
+        </div>
+      </div>
+</template>
+
+
+
+<template name="Navbar">
+<div class="ui inverted segment">
+  <div class="ui inverted stackable secondary pointing menu">
+  <div class="header item">Mamoru</div>
+    <!--Left Menu -->
+    <a class="{{isActivePath '/feed'}} item" href="/feed">
+      Feed
+    </a>   
+    <a class="{{isActivePath '/modules'}} item" href="/modules">
+      Modules
+    </a>   
+
+ <div id="thisProjectNav" class="ui dropdown item">
+    {{titleize thisProject.name}}
+    <i class="dropdown icon"></i>
+    <div class="menu">
+     <a class="item {{isActivePath regex='^\\/projects\/.*\/discover'}}" href="/projects/{{thisProject.slug}}/discover">
+        <i  class="unhide icon"></i>
+       Discover
+      </a>
+      
+      <a class="item {{isActivePath regex='^\\/projects\/.*\/exploit'}}" href="/projects/{{thisProject.slug}}/exploit">
+        <i  class="crosshairs icon"></i>
+        Exploit
+      </a>
+           <a class="item {{isActivePath regex='^\\/projects\/.*\/report'}}" href="/projects/{{thisProject.slug}}/report/">
+        <i  class="newspaper icon"></i>
+        Report
+      </a>
+      </div>
+  </div>
+
+    <!-- Right Menu -->
+    <div class="right menu">
+
+      <!-- Project Dropdown -->
+      <div id="projectsNav" class="ui dropdown item ">
+        Projects
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          {{#each projects}}
+            <a href="/projects/{{slug}}/discover" class="item">{{titleize name }}</a>
+          {{/each}}
+          {{#if isInRole 'admin'}}
+            <a class="item" id="newProj"><i class="green add square icon"></i>New Project</a>
+          {{/if }}
+        </div>
+      </div>
+     
+
+      <div id="controlPanelNav" class="ui dropdown item">
+        Control Panel
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <a  id="userProfile" class="item"><i class="user icon"></i>My Profile</a>
+          {{#if isInRole 'admin'}}
+              <div class="divider"></div>
+                <div class="header"><i class="settings icon"></i>Admin</div>
+                <a id="mngContainers" class="item {{isActivePath regex='^\\/admin\/containers'}}" href="/admin/containers"><i class="configure icon"></i>Manage Containers</a>
+                <a id="editProjectsNav" class="item {{isActivePath regex='^\\/admin\/edit-projects'}}" href="/admin/edit-projects"><i class="folder icon"></i>Edit Projects</a>
+                <a id="editUsersNav" class="item {{isActivePath regex='^\\/admin\/edit-users'}}" href="/admin/edit-users"><i class="users icon"></i>Edit Users</a>
+          {{/if }}
+          <div class="divider"></div>
+           <a id="logoutBtn" class="item"><i class="sign out icon"></i>Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</template>

@@ -1,0 +1,13 @@
+<template name="moduleActions">
+	<div class="ui {{orientation}} {{fixed}} menu actionSideBar">
+	 {{#unless onMobile orientation}} <div class="header item">Module Options </div>{{/unless}}
+		<a class="item {{#if requiredOnly}} active {{/if}}" id="requiredOpts"> <i class="columns icon"></i>{{#unless onMobile orientation}} Show Required {{else}} Required {{/unless}}</a>
+		<!--<a class="item" id="advancedOpts"> <i class="lab icon"></i>Advanced Options</a>-->
+		<a class="item {{#if requiredOnly}} {{else}} active {{/if}}" id="allOpts"> <i class="table icon"></i>{{#unless onMobile orientation}} Show All {{else}} All {{/unless}}</a>
+    	<a class="item" id="setDefaults"> <i class="wizard icon"></i> {{#unless onMobile orientation}} Set Defaults {{else}} Defaults {{/unless}}</a>
+    	{{#if anExploit}}<a class="item payLoadOpts"> <i class="rocket icon"></i> {{#unless onMobile orientation}} Configure Payload {{else}} Payload {{/unless}}</a> {{/if}}
+    	<a class="item" id="clearOpts"> <i class="erase icon"></i> Clear </a>
+		<a class="item" id="saveOpts"> <i class="save icon"></i> Save </a>
+		<a class="item" id="runModule"> <i class="play icon"></i> Run </a>
+	</div>
+</template>

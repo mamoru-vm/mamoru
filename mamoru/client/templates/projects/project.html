@@ -1,0 +1,315 @@
+<template name="projectNav">
+  <div class="one column row">
+    <div class="ui top attached fluid four steps">
+      <div data-value='discover' class="link step {{isActivePath regex='^\\/projects\/.*\/discover'}}">
+        <i class="unhide icon"></i>
+        <div class="content">
+          <div class="title">Discover</div>
+        </div>
+      </div>
+      <div data-value='exploit' class="link step {{isActivePath regex='^\\/projects\/.*\/exploit'}}">
+        <i class="crosshairs icon"></i>
+        <div class="content">
+          <div class="title">Exploit</div>
+        </div>
+      </div> 
+      <div data-value='report' class="link step {{isActivePath regex='^\\/projects\/.*\/report'}}">
+        <i class="newspaper icon"></i>
+        <div class="content">
+          <div class="title">Report</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<template name="emptyHostsTableTemplate">
+<div class="row">
+<div class="ui blue segment">
+  <p> Add hosts manually, or by uploading scan data. </p>
+  <p> You could also run auxilliary scan modules! </p>
+</div>
+</div>
+
+</template>
+
+<template name="discover">
+<div class="ui grid container" >
+<div class="row">
+<h1 class="ui left aligned header ">{{titleize thisProject.name}}</h1>
+</div>
+<!-- this needs some debugging to work proper kinda messes things up
+<div class="mobile only row">
+ {{> discoverActions orientation="horizontal" fixed="bottom fixed"}}
+</div>
+-->
+<div class="thirteen wide column">
+<div class="ui left attached rail">
+ {{> discoverActions orientation="vertical"}}
+</div>
+  <!-- segments start -->
+  <div class="ui segments">
+    <div class="ui segment">
+    <h3 class="ui dividing header">Hosts</h3>
+      {{> reactiveTable collection=projectHosts settings=hostTableSettings  class="ui compact selectable unstackable blue table" }}
+    </div>
+{{#if isHostSelected}}
+  <div class="ui horizontal segments">
+  {{#with selectedHost}}
+  <div class="ui segment"> <!--editable host details  -->
+    <h3 class="ui dividing header">{{#if this.name}} {{this.name}} {{else}} {{this.address}} {{/if}} </h3>
+    <div class="ui internally celled equal width grid">
+      <div class="column">
+        <div class="ui compact tertiary center aligned segment">
+        <h3 class="ui sub header">OS</h3>
+          <span> {{> editableText options=editableOptions context=selectedHost collection='hosts' field="os_name"}}</span>
+        </div>
+        <div class="ui compact tertiary center aligned segment">
+          <h3 class="ui sub header">Name</h3> <span>{{> editableText options=editableOptions context=selectedHost collection='hosts' field="name"}}</span>
+        </div>
+        <div class="ui compact tertiary center aligned segment">
+          <h3 class="ui sub header">Purpose</h3> <span>{{> editableText options=editableOptions context=selectedHost collection='hosts' field="purpose"}}</span>
+        </div>
+
+     </div>
+      <div class="column">
+       <div class="ui compact tertiary center aligned segment">
+          <h3 class="ui sub header">Flavor</h3> <span>{{> editableText options=editableOptions context=selectedHost collection='hosts' field="os_flavor"}}</span>
+        </div>
+             <div class="ui compact tertiary center aligned segment">
+          <h3 class="ui sub header">IP</h3> <span>{{> editableText options=editableOptions context=selectedHost collection='hosts' field="address"}}</span>
+        </div>
+               <div class="ui compact tertiary center aligned segment">
+          <h3 class="ui sub header">State</h3> <span>{{> editableText options=editableOptions context=selectedHost collection='hosts' field="state"}}</span>
+        </div>
+
+      </div>
+      
+      <div class="column">
+       <div class="ui compact tertiary center aligned segment">
+          <h3 class="ui sub header">Language</h3> <span>{{> editableText options=editableOptions context=selectedHost collection='hosts' field="os_lang"}}</span>
+        </div>
+
+       <div class="ui compact tertiary center aligned segment">
+          <h3 class="ui sub header">MAC</h3> <span>{{> editableText options=editableOptions context=selectedHost collection='hosts' field="mac"}}</span>
+        </div>
+
+        <div class="ui compact tertiary center aligned segment">
+          <h3 class="ui sub header">Virtual Host</h3> <span>{{> editableText options=editableOptions context=selectedHost collection='hosts' field="virtual_host"}}</span>
+        </div>
+      </div>
+      <div class="row">
+      <div class="column">
+        <div class="ui compact tertiary center aligned segment">
+          <h3 class="ui sub header">Info</h3> <span>{{> editableText options=editableOptions context=selectedHost collection='hosts' field="info"}}</span>
+        </div>
+      </div>
+      </div>
+    </div>
+<!--
+  <div class="ui basic center aligned vertical segment">
+    <div class="ui large selection relaxed horizontal list">
+    <div class="item">
+      <div class="content">
+        <div class="header">OS</div>
+        <div class="description">{{> editableText options=editableOptions context=selectedHost collection='hosts' field="os_name"}}</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <div class="header">Flavor</div>
+        <div class="description">{{> editableText options=editableOptions context=selectedHost collection='hosts' field="os_flavor"}}</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <div class="header">Version</div>
+        <div class="description">{{> editableText options=editableOptions context=selectedHost collection='hosts' field="os_sp"}}</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <div class="header">Language</div>
+        <div class="description">{{> editableText options=editableOptions context=selectedHost collection='hosts' field="os_lang"}}</div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="ui basic center aligned vertical segment">
+    <div class="ui large selection relxed horizontal list">
+      <div class="item">
+        <div class="content">
+          <div class="header">Name</div>
+          <div class="description">{{> editableText options=editableOptions context=selectedHost collection='hosts' field="name"}}</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="content ">
+          <div class="header">IP Address</div>
+          <div class="description">{{> editableText options=editableOptions context=selectedHost collection='hosts' field="address"}}</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="content">
+          <div class="header">MAC Address</div>
+          <div class="description">{{> editableText options=editableOptions context=selectedHost collection='hosts' field="mac"}}</div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="ui basic center aligned vertical segment">
+    <div class="ui large selection relaxed horizontal list">
+      <div class="item">
+        <div class="content ">
+          <div class="header">Purpose</div>
+          <div class="description">{{> editableText options=editableOptions context=selectedHost collection='hosts' field="purpose"}}</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="content">
+          <div class="header">State</div>
+          <div class="description">{{> editableText options=editableOptions context=selectedHost collection='hosts' field="state"}}</div>
+        </div>
+        </div>
+        <div class="item">
+        <div class="content">
+          <div class="header">Virtual Host</div>
+          <div class="description">{{> editableText options=editableOptions context=selectedHost collection='hosts' field="virtual_host"}}</div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui basic center aligned vertical segment">
+      <div class="ui large selection horizontal list">
+        <div class="item">
+          <div class="content ">
+            <div class="header">Info</div>
+            <div class="description">{{> editableText options=editableOptions context=selectedHost collection='hosts' field="info"}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+      -->
+  </div>
+
+  {{#if enumeratingHost }}
+    <div class="ui center aligned segment">
+       <div class="ui active inverted dimmer">
+          <div class="ui indeterminate medium text loader">Scanning {{this.address}}</div>
+        </div>
+        <p></p>
+    </div>
+  {{else}}
+      <div class="ui segment">
+      {{#if this.services}}
+      <h3 class="ui dividing header">Discovered Services</h3>
+        {{> reactiveTable collection=this.services settings=serviceTableSettings class="ui very compact selectable unstackable yellow table" }}
+       {{else}}
+          <h3 class="ui dividing header">No Services :(</h3>
+       {{/if }}
+      </div>
+
+  {{/if }}
+  {{/with}}
+
+  </div>
+<div class="ui segment"> <!--comments  -->
+<h3 class="ui center aligned dividing header">Comments</h3>
+<div class="ui minimal comments" style="max-width:none;">
+  <div class="comment">
+    <div class="content">
+      <a class="author" spfieldtype="null" elsourceindex="155">Elliot Fu</a>
+      <div class="metadata">
+        <span class="date">Yesterday at 12:30AM</span>
+      </div>
+      <div class="text">
+        <p>This has been very useful for my research. Thanks as well!</p>
+      </div>
+      <div class="actions">
+        <a class="reply" spfieldtype="null" elsourceindex="156">Reply</a>
+      </div>
+    </div>
+    <div class="comments">
+      <div class="comment">
+        <div class="content">
+          <a class="author" spfieldtype="null" elsourceindex="159">Jenny Hess</a>
+          <div class="metadata">
+            <span class="date">Just now</span>
+          </div>
+          <div class="text">
+            Elliot you are always so right :)
+          </div>
+          <div class="actions">
+            <a class="reply" spfieldtype="null" elsourceindex="160">Reply</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form class="ui reply form" elsourceindex="165">
+    <div class="field">
+      <textarea elsourceindex="166"></textarea>
+    </div>
+    <div class="ui blue labeled submit icon button">
+      <i class="icon edit"></i> Add Reply
+    </div>
+  </form>
+</div>
+
+</div>
+
+{{/if}} <!-- if isHostSelected end -->
+  </div><!-- segments end -->
+</div> <!-- sixteen wide column end -->
+
+</div>
+</template>
+
+
+
+
+
+<template name="enumerate">
+<div class="column">
+  <h1>Enumerate</h1>
+  <h1>{{thisProject.name}}</h1>
+  <h3>{{thisProject._id}}</h3>
+</div>
+</template>
+
+<template name="report">
+ <div class="column">
+  <h1>Report</h1>
+  <h1>{{thisProject.name}}</h1>
+  <h3>{{thisProject._id}}</h3>
+</div>
+</template>
+
+<template name="actionCell">
+   <div class="ui left pointing dropdown icon basic button hostTableAction">
+              <i class="blue tasks icon"></i>
+                <div data-value={{moduleId}} class="menu">
+                   <div class="item enumerateHost">
+                      <i class="sitemap icon"></i>
+                      Enumerate
+                    </div>
+                    <div class="item addNote">
+                      <i class="file text icon"></i>
+                      Add Note
+                    </div>
+                    <div class="item addService">
+                      <i class="file code outline icon"></i>
+                      Add Service
+                    </div>
+                  <div class="item removeAhost">
+                      <i class="trash icon"></i>
+                      Remove
+                    </div>
+                </div>
+            </div>
+</template>
+

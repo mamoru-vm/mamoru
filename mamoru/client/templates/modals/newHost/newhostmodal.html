@@ -1,0 +1,47 @@
+<template name="newHostModal">
+	<div id="newHostModal" class="ui modal">
+	  	<div class="header">
+			Add Host
+		</div>
+		<div class="content">
+			<form id="newHostForm" class="ui form">
+	    <div class="required field">
+	      <label>IP Address</label>
+	      <input name="address" type="text" placeholder="xxx.xxx.xxx.xxx">
+		</div>
+		<div class="field">
+	      <label>Name</label>
+	      <input name="name" type="text">
+		</div>
+		<div class="field">
+	      <label>OS</label>
+	      <input  name="os_name" type="text" placeholder="Windows, Linux, OSX">
+		</div>
+		<div class="field">
+	      <label>OS Flavour</label>
+	      <input  name="os_flavor" type="text" placeholder="Enterprise, Pro, Home">
+		</div>
+		<div class="field">
+	      <label>Purpose</label>
+	      <input  name="purpose" type="text" placeholder="server, workstation, mobile">
+		</div>
+<div class="required field">
+    <label>State</label>
+    <select class="ui dropdown" name="state">
+      <option value="">Select</option>
+      <option value="alive">Alive</option>
+      <option value="down">Down</option>
+      <option value="unknown">Unknown</option>
+    </select>
+  </div>
+  <div class="ui error message"></div>
+		</form>
+	</div>
+	<div class="actions">
+	    <!--<div class="ui approve button">Save</div> -->
+	     <div id="saveHost" class="ui button">Save</div>
+	    <div class="ui cancel button">Cancel</div>
+	</div>
+
+	</div>
+</template>

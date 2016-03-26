@@ -1,9 +1,6 @@
-app/.meteor/local
+mamoru/.meteor/local
 # semantic files
-app/client/lib/semantic-ui
+mamoru/client/lib/semantic-ui
 
-watch-dog/node_modules
-# ignore log files in watcher log dir.
-watch-dog/logs/
 
-mamoru-worker/node_modules
+

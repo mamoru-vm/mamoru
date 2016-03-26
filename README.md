@@ -5,8 +5,8 @@ A real-time web platform for managing and testing software vulnerabilities.
 - [X] Provides real time web interface to the popular Metasploit Framework (MSF)
 - [X] Intuitive PenTest Methodology for simple execution of basic testing operations
 - [X] Browse Metasploit modules  
-- [ ] Exploit Systems with Metasploit Exploit Modules
-- [ ] Interact with systems over metepreter shell
+- [X] Exploit Systems with Metasploit Exploit Modules
+- [X] Interact with systems over metepreter shell
 - [ ] Plugin interface for adding functionality
 - [ ] ...
 

@@ -1,0 +1,24 @@
+<template name="aHost">
+<div class="row"> 
+<h1> Host - {{#if thisHost.name}} {{thisHost.name}} {{else}} {{thisHost.address}} {{/if}} </h1>
+</div>
+<div class="one column row">
+<div class="ui form">
+  <div class="fields inline">
+    <div class="field">
+      <label>Name</label>
+      <input type="text" placeholder="{{thisHost.name}}" >
+    </div>
+    <div class="field">
+      <input type="text" placeholder="Middle Name" >
+    </div>
+    <div class="field">
+      <input type="text" placeholder="Last Name" >
+    </div>
+  </div>
+</div>
+</div>
+<div class="one column row">
+{{> reactiveTable collection=thisHost.services class="ui compact selectable inverted table" }}
+</div>
+</template>

@@ -1,0 +1,107 @@
+/* CSS declarations go here */
+
+.at-column {
+top: 25px;
+}
+
+.shell-panel {
+    height: 325px;
+    width: 100%;
+    bottom: 0;
+    background-color: #002f05;
+    color: #00fe00;
+    padding: 20px 20px 20px 20px;
+    position: fixed;
+    font-family: 'Source Code Pro';
+    z-index: 1000;
+    opacity: 0.8;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border: 1px dashed #E6EBE0;
+}
+
+#consoletab {
+    position: fixed;
+    top: -10px;
+    left: 45%;
+    font-family: 'Source Code Pro';
+    font-size: 0.8em;
+    color: #efefef;
+    background-color: #2a2a29;
+    border-radius: 10px;
+    -moz-border-radius: 4px;
+    padding: 10px 5px 2px 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    text-shadow: 0px 2px 0px #000;
+    z-index: 100000;
+}
+
+.consoletab {
+    border: 2px solid #3a3a39;
+    opacity: 0.7;
+}
+
+
+code {
+    font-family: 'Source Code Pro', "Lucida Sans", Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal;
+    color: #efefef;
+    border: 1px solid #3a3a39;
+    background-color: #2a2a29;
+    border-radius: 5px;
+    -moz-border-radius: 4px;
+    padding: 0px 2px;
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    border-radius: 2px;
+}
+
+
+/*  semantic overides */
+
+.ui.steps .step.active .title {
+    color: #0D0E0E;
+}
+
+
+.projectActions {
+    position: relative;
+    top: 88px;
+    left: 85px;
+}
+
+
+.wide-text-edit {
+    width: 60%;
+}
+
+#content {
+    margin-top: 20px;
+}
+
+.actionSideBar {
+    position: absolute;
+    top: 28px;
+    left: 75px;
+}
+
+.actionSideBarProject {
+    position: absolute;
+    top: 28px;
+    left: 75px;
+}
+
+.discoverSidebar {
+    padding-top: 30px;
+}
+
+.serviceRow, .hostRow, .modRow {
+  cursor: pointer;
+}
+

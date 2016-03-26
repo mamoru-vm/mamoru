@@ -1,0 +1,62 @@
+<template name="appLayout">
+<!-- Dynamic -->
+  <div id="main">  
+    <div id="nav">
+      {{> Template.dynamic template=nav}}
+    </div>   
+    {{> Template.dynamic template=projNav}}
+    <div id="content">
+      {{> Template.dynamic template=main}}
+    </div>
+  </div>
+<!-- Modals -->
+  <!--Admin  Modals -->
+    {{#if isInRole 'admin'}}
+      {{> newProjModal}}
+      {{> newUserModal}}
+    {{/if }}
+
+  <!--User  Modals -->
+    {{#if isInRole 'admin,user'}}
+      {{> newHostModal}}
+      {{> enumerateHostModal}}
+    {{/if }}
+   
+      <!-- S Alert template 
+     {{> sAlert template='sAlertCustom'}}-->
+      {{> sAlert }}
+
+</template>
+
+
+<template name="loginLayout">
+<!-- Minimal Login Layout -->
+<div class="ui container">
+  {{> Template.dynamic template=main}}
+</div>
+</template>
+
+
+<template name="routeNotFound">
+<div class="ui container">
+<div class=" column ">
+<div class="ui massive negative message">
+  Hmm that does not exist...
+</div>
+</div>
+</div>
+</template>
+
+<!-- this doesnt really work, gonna just use normal s-alert template
+<template name="sAlertCustom">
+    <div class="ui {{condition}} message s-alert-{{condition}} s-alert-{{position}} s-alert-effect-{{effect}} s-alert-show" id="{{_id}}" style="{{boxPosition}}">
+    <i class="close icon closeAlert"></i>
+     <div class="s-alert-box-inner">
+            <div class="header">
+                {{title}}
+            </div>
+            <p>{{msg}}</p> 
+      </div>
+    </div>
+</template>
+ -->

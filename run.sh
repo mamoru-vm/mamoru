@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-cd app/ 
+cd mamoru/ 
 meteor --settings settings.json 
