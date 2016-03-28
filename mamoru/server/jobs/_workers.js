@@ -53,7 +53,7 @@ function checkSession(job, cb, timeout, interval ){
                 currentSessions[k]["runBy"] = runBy;
                 currentSessions[k]["sessionId"] = k;
                 currentSessions[k]["established"] = true;
-                Mamoru.Collections.Sessions.upsert(currentSessions[k]); // insert record into session collection
+                Mamoru.Collections.Sessions.insert(currentSessions[k]); // insert record into session collection
                 job.done("session up!");
                 cb();
                 Meteor.clearTimeout(timeout); // clear timeout 

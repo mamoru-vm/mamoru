@@ -4,7 +4,12 @@ Template.discoverActions.helpers({
    return Template.instance().Files.get()
   },
   scanMods: function(){
-    return Mamoru.Collections.Modules.find();
+    if(Template.subsciptionsReady()){
+      return Mamoru.Collections.Modules.find();
+    } else {
+      return ["Waiting on Sub..."]
+    }
+    
   },
   isHostSelected:function(){
     if(Session.get('selectedHost')){
@@ -81,6 +86,9 @@ Template.discoverActions.events({
     console.log("add host button!!")
     $('#newHostModal').modal('toggle');
   },
+  'click .nmap':function(event, target){
+    $('#nmapModal').modal('toggle');
+  },
   'click .enumerateHost':function(event, target){
     $('#enumerateHostModal').modal('toggle');
   }
@@ -91,6 +99,7 @@ Template.discoverActions.onRendered(function(){
  $('.ui.label').popup({on:'hover',variation:'tiny basic very wide'})
 
  $(".discoverDropdown").dropdown({action: 'hide'});
+ $(".ui.dropdown").dropdown();
 
 });
 

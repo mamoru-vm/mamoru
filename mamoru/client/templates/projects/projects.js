@@ -13,9 +13,7 @@ Template.projectNav.events({
 });
 
 Template.discover.onCreated(function(){
-  var slug = FlowRouter.getParam('projectSlug');
-
-  this.subscribe('project-hosts', slug);
+  this.subscribe('project-hosts', Session.get("currentProject"));
   this.subscribe('scanner-modules');
 
 });
@@ -39,10 +37,18 @@ Template.discover.onRendered(function(){
 });
 
 Template.discover.events({
-
   'click .removeAhost':function(event){
     console.log('remove a host!');
-    console.log($(event.currentTarget).parent().data('value'));
+    var hostId = $(event.currentTarget).parent().data('value');
+    var hostIP = Mamoru.Collections.Hosts.findOne(hostId).address;
+    Meteor.call("delHost", hostId, function(err,res){
+      if(!err){
+        sAlert.success(`Removed host: ${hostIP}`)
+      } else {
+        console.log(err);
+        sAlert.warning(`Something happened trying to remove: ${hostIP}`)
+      }
+    });
   },
   'click .enumerateHost':function(event){
     console.log($(event.currentTarget).parent().data('value'));

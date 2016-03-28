@@ -2,7 +2,6 @@
 // hooks are defined alongside collections, collections/server/hooks/*.js
 
 Meteor.methods({
-
 // to be very restrictive. allows full access to msf api, dangerous...
 msfCommand: function(cmds){
     if(Meteor.userId()) {
@@ -57,6 +56,16 @@ runModule: function(moduleId, options){
   
   upgradeShell: function(sessionId, port){
     return Mamoru.Utils.upgradeSession(sessionId, "192.168.0.137", port);
+  },
+
+  killSession: function(sessionId){
+    check(sessionId, String);
+    if(Meteor.userId()) {
+     var thisSession = Mamoru.Collections.Sessions.findOne({sessionId: sessionId})._id
+      return Mamoru.Utils.killSession(thisSession);
+    } else {
+      throw new Meteor.Error("not-allowed", "You are not logged in");
+    }
   },
 
 checkForSessions: function(){
@@ -176,7 +185,7 @@ checkForSessions: function(){
       if(result.error === true){
         throw new Meteor.Error("insert-scan-failed", result.error_string);
       } else {
-        Mamoru.Utils.syncAllProjectHosts(projectName);
+        Mamoru.Sync.AllProjectHosts(projectName);
         return result
       } 
     } else {

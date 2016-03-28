@@ -1,15 +1,15 @@
-<template name="enumerateHostModal">
-<div id="enumerateHostModal" class="ui small modal" style="width:400px;">
+
+<template name="nmapModal">
+<div id="nmapModal" class="ui small modal" style="width:400px;">
 		<div class="header">
-			Enumerate Host
+			Run nmap scan
 		</div>
 	<div class="content">
-
-	<div id="nmapForm" class="ui form">
+<div id="nmapForm" class="ui form">
  <div class="equal width fields">
 	<div class="field">
-	<label>Address:</label>
-    <input type="text" name="hostaddress" value="{{selectedHost}}">
+	<label>Addresses:</label>
+    <input type="text" name="hostaddress">
 	</div>
 		<div class="field">
 	<label>Target Ports:</label>
@@ -20,7 +20,7 @@
 
 	<div class="inline field">
 	<label>Aggression</label>
-	<div id="aggDropdown" class="ui compact dropdown">
+	<div  class="ui compact dropdown aggDropdown">
 		<input type="hidden" name="aggressionlevel">
 		 <i class="dropdown icon"></i>
 		  <div class="default text" data-value="3">3</div>
@@ -45,7 +45,7 @@
 
 	</div>		
 	<div class="actions">
-		<div id="runEnum" class="ui button">Run</div>
+		<div id="runNmap" class="ui button">Run</div>
 		<div class="ui cancel button">Cancel</div>
 	</div>
 </div>

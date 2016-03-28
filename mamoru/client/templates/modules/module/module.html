@@ -37,11 +37,13 @@
     {{#with payloads}}
       <div class="item">
       <div class="header">Compatible Payloads</div>
+      {{#if Template.subscriptionsReady}}
       <div class="ui horizontal bulleted list">
         {{#each truncPayloads payloads}}
              <div class="item"> {{this.path}}</div>
         {{/each }}
      </div>
+     {{/if}}
     </div>
     {{/with }}
     <div class="item">
@@ -64,7 +66,7 @@
 </div>
 <div class="thirteen wide column" style="padding-bottom:100px;">
 <h3 class="ui dividing header">Module Options</h3> 
-{{#if Template.subscriptionsReady}}  {{else}} <h4 class="ui center aligned header">Loading Options</h4><div class="ui active centered large inline loader"></div> {{/if}}
+{{#if Template.subscriptionsReady}}  {{else}} <h4 class="ui center aligned header">Loading Module Details</h4><div class="ui active centered large inline loader"></div> {{/if}}
 <div id="modOptionsForm" class="ui equal width form">
 <div class="ui segments">
 {{#if textOpts}}

@@ -3,16 +3,19 @@
   <input class="fileInput" style="display:none;" type="file" multiple />
   <a class="item addHost"><i class="plus icon"></i>Add Host</a>
      <div class="item header">Discover Hosts</div>
+ <!--
     <div class="ui dropdown item"> <i class="dropdown icon"></i><span class="text"><i class="play icon"></i>Run Scan</span>
+     {{#if Template.subscriptionsReady}}
       <div class="menu">
       {{#each scanMods}}
         <div data-value="{{this._id}}" class="item scanMod">{{this.name}}</div>
       {{/each }}
       </div>
+        {{/if}}
     </div>
-
+-->
     <a class="item selectFiles"> <i class="file text icon"></i> Upload Scan</a>
-    <a class="item enumerateHost"><i class="unhide icon"></i> Nmap</a>
+    <a class="item nmap"><i class="unhide icon"></i> Nmap</a>
 
   
   <div class="ui horizontal list item">

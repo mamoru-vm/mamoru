@@ -282,34 +282,36 @@
 </template>
 
 <template name="report">
- <div class="column">
-  <h1>Report</h1>
-  <h1>{{thisProject.name}}</h1>
-  <h3>{{thisProject._id}}</h3>
-</div>
+  <div class="ui grid container" >
+     <div class="column">
+      <h1>Report</h1>
+      <h1>{{thisProject.name}}</h1>
+      <h3>{{thisProject._id}}</h3>
+    </div>
+  </div>
 </template>
 
 <template name="actionCell">
-   <div class="ui left pointing dropdown icon basic button hostTableAction">
-              <i class="blue tasks icon"></i>
-                <div data-value={{moduleId}} class="menu">
-                   <div class="item enumerateHost">
-                      <i class="sitemap icon"></i>
-                      Enumerate
-                    </div>
-                    <div class="item addNote">
-                      <i class="file text icon"></i>
-                      Add Note
-                    </div>
-                    <div class="item addService">
-                      <i class="file code outline icon"></i>
-                      Add Service
-                    </div>
-                  <div class="item removeAhost">
-                      <i class="trash icon"></i>
-                      Remove
-                    </div>
-                </div>
-            </div>
+ <div class="ui left pointing dropdown icon basic button hostTableAction">
+  <i class="blue tasks icon"></i>
+    <div data-value={{moduleId}} class="menu">
+       <div class="item enumerateHost">
+          <i class="sitemap icon"></i>
+          Enumerate
+        </div>
+        <div class="item addNote">
+          <i class="file text icon"></i>
+          Add Note
+        </div>
+        <div class="item addService">
+          <i class="file code outline icon"></i>
+          Add Service
+        </div>
+      <div class="item removeAhost">
+          <i class="trash icon"></i>
+          Remove
+        </div>
+    </div>
+  </div>
 </template>
 
