@@ -150,7 +150,7 @@ Mamoru.Sync.AllProjectHosts = function(projectName){
     }
 }
 
-Mamoru.Utils.syncProjectHost = function(projectSlug, hostAddress){
+Mamoru.Sync.projectHost = function(projectSlug, hostAddress){
     let thisWorkspace = Mamoru.Collections.Projects.findOne({slug:projectSlug});
     Mamoru.Utils.setProject(thisWorkspace.name);
     let hostFromMSF = Mamoru.Utils.hostInfo(hostAddress)[0];

@@ -37,3 +37,30 @@ Mamoru.Utils.enumHost = function(address,aggression,ports){
       }
   });
 }
+
+// no good, only works on a single host...
+Mamoru.Utils.runNmap = function(address,aggression,ports){
+  var thisProject = Mamoru.Collections.Projects.findOne({slug:Session.get('currentProject')});
+  Meteor.call('runNmap', address, aggression, ports, function(err,res){
+      if(!err){
+         sAlert.info(`Starting NMAP of ${address}...`);
+          Tracker.autorun((c)=>{
+            var enumJob = Mamoru.Collections.Jobs.findOne(res);
+            if(enumJob.status === "completed"){
+              Meteor.call('syncAllHosts', thisProject.slug);
+              //delay for 1.5 s for host to sync before success msg
+              Meteor.setTimeout(()=>{
+                sAlert.success(`Enumeration of ${address} complete!`);
+              }, 1500);
+              c.stop();
+              return;
+            } else if (enumJob.status === "failed") {
+              sAlert.error(`Nmap of ${address} failed`);
+              console.log(enumJob.failures[0].reason);
+              c.stop();
+              return;
+            }
+          });
+      }
+  });
+}

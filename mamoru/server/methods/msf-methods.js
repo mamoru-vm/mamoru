@@ -135,15 +135,20 @@ checkForSessions: function(){
      }
   },
 
+/* replaced with base64 encoded string entry..
   insertScan: function(fileId, projectName){
     let insertResults = msfAPI.insertScan(fileId);
-    Mamoru.Utils.syncAllProjectHosts(projectName);
+    Mamoru.Sync.AllProjectHosts(projectName);
     return insertResults
   },
-
+*/
   setProject: function(projectSlug){
+  if(Meteor.userId()){
     var projectName = Mamoru.Collections.Projects.findOne({slug:projectSlug}).name
     return Mamoru.Utils.setProject(projectName);
+  } else {
+    throw new Meteor.Error("not-allowed", "Not for you!");
+  }
   },
 
   enumerateHost:function(address, aggression, ports, hostId){
@@ -161,22 +166,53 @@ checkForSessions: function(){
    }
   },
 
-  consoleJob: function(command){
-    var newJob = new Job(Mamoru.Collections.Jobs, 'consoleAction',{command:command}).save();
+  runNmap:function(address, aggression, ports){
+   if(Meteor.userId()){
+    if(ports){
+       var cmd = `db_nmap -A -T${aggression} -p ${ports} ${address}\n`
+    } else {
+       var cmd = `db_nmap -A -T${aggression} ${address}\n`
+    }
+    let newJob = new Job(Mamoru.Collections.Jobs, 'consoleAction',{command:cmd, userId:Meteor.userId()}).save();
     Mamoru.Queues.consoleWrite.trigger()
     return newJob
+   }
+  },
+
+  consoleJob: function(command){
+    if(Meteor.userId()){
+      var newJob = new Job(Mamoru.Collections.Jobs, 'consoleAction',{command:command}).save();
+      Mamoru.Queues.consoleWrite.trigger()
+      return newJob
+    } else {
+      throw new Meteor.Error("not-allowed", "Not for you!");
+    }
   },
 
   syncAllHosts:function(projectName){
-    Mamoru.Utils.syncAllProjectHosts(projectName);
+    if(Meteor.userId()){
+      Mamoru.Sync.AllProjectHosts(projectName);
+     return {result: "OK"};
+    } else {
+      throw new Meteor.Error("not-allowed", "Not for you!");
+    }
   },
 
   syncHost:function(projectSlug, hostAddress){
-    Mamoru.Utils.syncProjectHost(projectSlug, hostAddress);
+     if(Meteor.userId()){
+    Mamoru.Sync.projectHost(projectSlug, hostAddress);
+    return {result: "OK"};
+   } else {
+      throw new Meteor.Error("not-allowed", "Not for you!");
+   }
   },
 
   delHost: function(hostId){
+    if(Meteor.userId()){
     return Mamoru.Collections.Hosts.remove(hostId);
+    }else {
+      throw new Meteor.Error("not-allowed", "Not for you!");
+    }
   },
 
   insertScanFileText: function(fileContentsb64, projectName){
@@ -193,11 +229,12 @@ checkForSessions: function(){
     }
   },
 
+/*
   // experimental....
   apiJob: function(command){
     var newJob = new Job(Mamoru.Collections.ApiJobs, 'apiCall', {command:command}).save();
     Mamoru.Queues.msfAPIcalls.trigger()
     return newJob
   }
-
+*/
 })

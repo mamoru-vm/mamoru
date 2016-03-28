@@ -1,29 +1,15 @@
 Template.nmapModal.onRendered(function(){
 
-  $('#runNmap').click(function() {
-    console.log("clicked run nmap")
-    $('#nmapForm').form('submit');
-  });
 
-$('#aggDropdown').dropdown();
+$('.aggDropdown').dropdown();
 
-  $('#nmapModal').modal({
-    onApprove : function() {
-      console.log("enumerate Host!");
-    },
-    onShow:function(){
-      console.log("nmap model show!")
-       $('#nmapForm').form('reset');
-
-
-
-  $('#nmapForm').form({
+    $('#nmapOptForm').form({
     inline:true,
     on:blur,
     fields:
     {
-      hostAddress:{
-        identifier:'hostaddress'
+      addresses:{
+        identifier:'addresses'
       },
       aggressionLevel:{
         identifier:'aggressionlevel'
@@ -32,7 +18,7 @@ $('#aggDropdown').dropdown();
         identifier:"ports",
       },
       confirm:{
-        identifier:'confirm',
+        identifier:'conf',
         rules:[
           {
             type : 'checked',
@@ -47,15 +33,27 @@ $('#aggDropdown').dropdown();
         fields.aggressionlevel = 3
       }
       // run methods for enumeration
-      Mamoru.Utils.enumHost(fields.hostaddress,fields.aggressionlevel,fields.ports);
-      
+      Mamoru.Utils.runNmap(fields.addresses,fields.aggressionlevel,fields.ports);
       $('#nmapModal').modal('toggle');
     }
-  });
+    });
+  
+  $('#nmapModal').modal({
+    onApprove : function() {
+      $('#nmapOptForm').form('submit');
+      console.log("enumerate Host!");
+    },
+    onShow:function(){
+      console.log("nmap model show!")
+       $('#nmapOptForm').form('reset');
+
     }
   });
 
-  
+  $('#runNmap').click(function() {
+    $('#nmapOptForm').form('submit');
+  });
+
   //$('#nmapForm').on("submit", (e)=>{e.preventDefault()});
 
 

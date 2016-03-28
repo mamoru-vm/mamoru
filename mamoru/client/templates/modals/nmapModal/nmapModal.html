@@ -1,53 +1,51 @@
 
 <template name="nmapModal">
-<div id="nmapModal" class="ui small modal" style="width:400px;">
-		<div class="header">
-			Run nmap scan
-		</div>
-	<div class="content">
-<div id="nmapForm" class="ui form">
- <div class="equal width fields">
-	<div class="field">
-	<label>Addresses:</label>
-    <input type="text" name="hostaddress">
-	</div>
-		<div class="field">
-	<label>Target Ports:</label>
-    <input type="text" name="ports" placeholder="nmap Port Options" >
-	</div>
-
-</div>
-
-	<div class="inline field">
-	<label>Aggression</label>
-	<div  class="ui compact dropdown aggDropdown">
-		<input type="hidden" name="aggressionlevel">
-		 <i class="dropdown icon"></i>
-		  <div class="default text" data-value="3">3</div>
-	 <div class="menu">
-    <div class="item" data-value="1" data-text="1">1 <i class="blue warning sign icon"></i></div>
-    <div class="item" data-value="2" data-text="2">2 <i class="green warning sign icon"></i></div>
-    <div class="item" data-value="3" data-text="3">3 <i class="yellow warning sign icon"></i></div>
-    <div class="item" data-value="4" data-text="4">4 <i class="orange warning sign icon"></i></div>
-    <div class="item" data-value="5" data-text="5">5 <i class="red warning sign icon"></i></div>
-   </div>
-</div>
-	</div>
-
-	<div class="required inline field">
-      <div class="ui toggle checkbox">
-        <input type="checkbox" name="confirm" tabindex="0" class="hidden">
-        <label>Confirm</label>
-      </div>
+  <div id="nmapModal" class="ui small modal" style="width:400px;">
+    <div class="header">
+    	Run nmap scan
     </div>
-</div>
+    <div class="content">
+      <div id="nmapOptForm" class="ui form">
+        <div class="equal width fields">
+          <div class="field">
+            <label>Addresses:</label>
+            <input type="text" name="addresses">
+          </div>
+          <div class="field">
+            <label>Target Ports:</label>
+            <input type="text" name="ports" placeholder="nmap Port Options" >
+          </div>
+        </div>
 
+        <div class="inline field">
+          <label>Aggression</label>
+          <div class="ui compact dropdown aggDropdown">
+            <input type="hidden" name="aggressionlevel">
+             <i class="dropdown icon"></i>
+              <div class="default text" data-value="3">3</div>
+            <div class="menu">
+              <div class="item" data-value="1" data-text="1">1 <i class="blue warning sign icon"></i></div>
+              <div class="item" data-value="2" data-text="2">2 <i class="green warning sign icon"></i></div>
+              <div class="item" data-value="3" data-text="3">3 <i class="yellow warning sign icon"></i></div>
+              <div class="item" data-value="4" data-text="4">4 <i class="orange warning sign icon"></i></div>
+              <div class="item" data-value="5" data-text="5">5 <i class="red warning sign icon"></i></div>
+            </div>
+          </div>
+        </div>
 
-	</div>		
-	<div class="actions">
-		<div id="runNmap" class="ui button">Run</div>
-		<div class="ui cancel button">Cancel</div>
-	</div>
-</div>
+        <div class="required inline field">
+        <div class="ui toggle checkbox">
+          <input type="checkbox" name="conf" tabindex="0" class="hidden">
+          <label>Confirm</label>
+          </div>
+        </div>
+      </div>
+    </div>		
+
+  	<div class="actions">
+  		<div class="ui button ok">Run</div>
+  		<div class="ui cancel button">Cancel</div>
+  	</div>
+  </div>
 
 </template>

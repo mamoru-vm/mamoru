@@ -45,6 +45,13 @@ if(!process.env.IS_MIRROR){
         console.log(fields);
  }
 });
+
+//insert default project placeholder when we launch if it does not exist
+// containers have not been started so msf default project has not been synced...
+if(!Mamoru.Collections.Projects.findOne({name:"default"})){
+  Mamoru.Collections.Projects.insert({name:"default"});
+}
+
 // After 10 seconds, stop keeping the count.
 //Meteor.setTimeout(function () {handle.stop();}, 10000);
 
