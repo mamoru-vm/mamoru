@@ -2,7 +2,7 @@
 Template.enumerateHostModal.onRendered(function(){
 
   $('#runEnum').click(function() {
-    $('#enumForm').form('submit');
+    $('#nmapForm').form('submit');
   });
 
 $('#aggDropdown').dropdown();
@@ -12,17 +12,17 @@ $('#aggDropdown').dropdown();
       console.log("enumerate Host!");
     },
     onShow:function(){
-       $('#enumForm').form('reset');
+       $('#nmapForm').form('reset');
        if(Session.get('selectedHost')){
-          $('#enumForm').form('set value', 'hostaddress', Mamoru.Collections.Hosts.findOne(Session.get('selectedHost')).address );
+          $('#nmapForm').form('set value', 'hostaddress', Mamoru.Collections.Hosts.findOne(Session.get('selectedHost')).address );
        }
     }
   });
 
   
-  $('#enumForm').on("submit", (e)=>{e.preventDefault()});
+  $('#nmapForm').on("submit", (e)=>{e.preventDefault()});
 
-  $('#enumForm').form({
+  $('#nmapForm').form({
     inline:true,
     on:blur,
     fields:

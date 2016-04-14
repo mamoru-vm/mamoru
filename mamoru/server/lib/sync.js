@@ -164,11 +164,11 @@ Mamoru.Sync.projectHost = function(projectSlug, hostAddress){
     // else update according to what is in msf for the host 
     } else {
         console.log('host exists');
-        var checkHost = checkHost(hostFromMSF,thisHost);
-        if(checkHost.needsUpdate) {
+        var ch = checkHost(hostFromMSF,thisHost);
+        if(ch.needsUpdate) {
             console.log('host needs update');
             // will not trigger hook
-            Mamoru.Collections.Hosts.direct.update(thisHost._id, {$set:checkHost.toUpdate});
+            Mamoru.Collections.Hosts.direct.update(thisHost._id, {$set:ch.toUpdate});
         } 
     }
 

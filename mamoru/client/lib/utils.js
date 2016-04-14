@@ -38,7 +38,6 @@ Mamoru.Utils.enumHost = function(address,aggression,ports){
   });
 }
 
-// no good, only works on a single host...
 Mamoru.Utils.runNmap = function(address,aggression,ports){
   var thisProject = Mamoru.Collections.Projects.findOne({slug:Session.get('currentProject')});
   Meteor.call('runNmap', address, aggression, ports, function(err,res){
